@@ -1,4 +1,4 @@
-package com.puyodev.luka.ui
+package com.puyodev.luka.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,15 +18,11 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.rounded.Menu
-import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
@@ -39,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -47,7 +43,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -55,96 +50,96 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.puyodev.luka.R
+import com.puyodev.luka.navigation.AppScreens
 
 @Composable
-fun AppContent() {
-    val navController = rememberNavController()
-    var clickCount by remember { mutableStateOf(0) } // Estado del contador
+fun AppContent(navController: NavController) {
+    var valor by remember { mutableIntStateOf(1) } // Estado del contador
+    Scaffold(
+        topBar = { CustomTopBar(navController = navController,name = "Juan") },
+        bottomBar = { CustomBottomBar2() }, // Agregar la barra inferior aquí
+    ) { innerPadding ->
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ){
+       Row (
+           modifier = Modifier
+               .fillMaxWidth()
+               .padding(15.dp)
+               .align(Alignment.CenterHorizontally),
+           horizontalArrangement = Arrangement.SpaceEvenly // Distribuye los elementos de forma uniforme
 
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
-            Scaffold(
-                topBar = { CustomTopBar(navController = navController,name = "Juan") },
-                bottomBar = { CustomBottomBar2(navController = navController) }, // Agregar la barra inferior aquí
-            ) { innerPadding ->
-                Column (
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)
-                ){
-               Row (
-                   modifier = Modifier
-                       .fillMaxWidth()
-                       .padding(15.dp)
-                       .align(Alignment.CenterHorizontally),
-                   horizontalArrangement = Arrangement.SpaceEvenly // Distribuye los elementos de forma uniforme
-
-               ){
-                   OutlinedButton(
-                       modifier = Modifier.width(160.dp),
-                       onClick = { /*TODO*/ }  // Modificación: Se pasa la función para cancelar.
-                   ) {
-                       Text("Monto\nS/35.00",)
-                   }
-                   OutlinedButton(
-                       modifier = Modifier.width(160.dp),
-                       onClick = { /*TODO*/ }  // Modificación: Se pasa la función para cancelar.
-                   ) {
-                       Text("Tarifa\nS/1.00"/*stringResource(R.string.app_name)*/)
-                   }
-               }
-                Box(
-                    modifier = Modifier
-                        //.fillMaxSize()
-                        .fillMaxWidth()
-                        .padding(0.dp,20.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Row (
-                        verticalAlignment = Alignment.CenterVertically // Centra verticalmente el contenido del Row
-                    ){
-                        IconButton(onClick = { navController.navigate("testScreen") }) {
-                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Minus")
-                        }
-                        Text(text = "02", fontSize = 100.sp)
-                        Image(
-                            painter = painterResource(id = R.drawable.persons),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .padding(0.dp)
-                                .size(360.dp) // Tamaño personalizado para la imagen centrada
-                        )
-                        IconButton(onClick = { navController.navigate("testScreen") }) {
-                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = "Plus")
-                        }
-                    }
+       ){
+           OutlinedButton(
+               modifier = Modifier.width(160.dp),
+               onClick = { /*TODO*/ }  // Modificación: Se pasa la función para cancelar.
+           ) {
+               Text("Monto\nS/35.00",)
+           }
+           OutlinedButton(
+               modifier = Modifier.width(160.dp),
+               onClick = { /*TODO*/ }  // Modificación: Se pasa la función para cancelar.
+           ) {
+               Text("Tarifa\nS/1.00"/*stringResource(R.string.app_name)*/)
+           }
+       }
+        Box(
+            modifier = Modifier
+                //.fillMaxSize()
+                .fillMaxWidth()
+                .padding(0.dp,20.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically // Centra verticalmente el contenido del Row
+            ){
+                IconButton(onClick = {
+                    if (valor > 0) valor-- // Resta 1 si valor es mayor que 0 - limite 1
+                }) {
+                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Minus")
                 }
-
-                    Row(
-                        modifier=Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-
-                    ) {
-                        ExtendedFloatingActionButton(
-                            modifier = Modifier
-                                .width(200.dp)
-                                .padding(0.dp,40.dp),
-                            onClick = {},
-                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                            contentColor = MaterialTheme.colorScheme.secondary,
-                            icon = {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = "Realizar pago" // Add a valid content description
-                                )
-                            },
-                            text = { Text(text = "Pagar", fontSize = 20.sp) }
-                        )
-                    }
+                Text(text = "$valor", fontSize = 100.sp)
+                Image(
+                    painter = painterResource(id = R.drawable.persons),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(0.dp)
+                        .size(360.dp) // Tamaño personalizado para la imagen centrada
+                )
+                IconButton(onClick = {
+                    if (valor < 10) valor++ // Suma 1 si valor es menor a 10 - limite 10
+                }) {
+                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Plus")
                 }
-
             }
         }
+
+            Row(
+                modifier=Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+
+            ) {
+                ExtendedFloatingActionButton(
+                    modifier = Modifier
+                        .width(200.dp)
+                        .padding(0.dp,40.dp),
+                    onClick = {navController.navigate(AppScreens.PaymentScreen.route+"/102/Av. Viña del Mar 705/$valor/02-05-2024 - 21:04")},
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.primary,
+                    icon = {
+                        Icon(
+                            Icons.Default.KeyboardArrowUp,
+                            contentDescription = "Realizar pago" // Add a valid content description
+                        )
+                    },
+                    text = { Text(text = "Pagar", fontSize = 20.sp) }
+                )
+            }
+        }
+
     }
 }
 
@@ -196,10 +191,10 @@ fun CustomBottomBar(navController: NavController) {
 }
 
 @Composable
-fun CustomBottomBar2(navController: NavController) {
+fun CustomBottomBar2() {
     BottomAppBar(
         modifier = Modifier
-            .shadow(elevation = 5.dp)
+            .shadow(elevation = 10.dp)
             .height(150.dp)
 
     ) {

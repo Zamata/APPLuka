@@ -1,4 +1,4 @@
-package com.puyodev.luka.ui
+package com.puyodev.luka.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,15 +11,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
@@ -30,10 +26,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.puyodev.luka.R
+import com.puyodev.luka.navigation.AppScreens
 
 @Composable
-fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
+fun PaymentScreen(navController: NavController,num_bus:Int,address:String,lukitas:Int,fecha:String){
     Column(
         modifier = Modifier
             .background(
@@ -48,10 +46,11 @@ fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
             .fillMaxSize()
             .padding(16.dp)
     ) {
+
         Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,80.dp,0.dp,0.dp),
+                .padding(0.dp, 80.dp, 0.dp, 0.dp),
             horizontalArrangement = Arrangement.Center // Centra los elementos dentro de Row
         ){
             Image(
@@ -77,7 +76,9 @@ fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
                     Text(text = fecha)
                 }
                 Row (
-                    modifier = Modifier.padding(0.dp,40.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(0.dp, 40.dp)
+                        .fillMaxWidth(),
                 ){
                     Column (
                         modifier=Modifier.padding(10.dp),
@@ -98,19 +99,23 @@ fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
                         horizontalAlignment = Alignment.CenterHorizontally
                     ){
                         Row (
-                            modifier = Modifier.padding(10.dp).fillMaxWidth(),
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center // Centra el contenido del Row horizontalmente
 
                         ){
-                            Text(text = "Pago:\n S/$luka")
+                            Text(text = "Pago:\n S/$lukitas")
                         }
                         HorizontalDivider(modifier = Modifier.fillMaxWidth())
                         Row (
-                            modifier = Modifier.padding(10.dp).fillMaxWidth(),
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center // Centra el contenido del Row horizontalmente
 
                         ){
-                            Text(text = "Paradero:\n $luka")
+                            Text(text = "Paradero:\n$address")
                         }
                     }
                 }
@@ -120,7 +125,7 @@ fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,80.dp), // Ocupa todo el ancho de la pantalla
+                .padding(0.dp, 80.dp), // Ocupa todo el ancho de la pantalla
             horizontalArrangement = Arrangement.SpaceEvenly // Distribuye los elementos de forma uniforme
         ) {
             SmallFloatingActionButton(
@@ -130,18 +135,22 @@ fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
             ) {
                 Icon(
                     Icons.Outlined.Share,
-                    modifier = Modifier.size(60.dp).padding(10.dp),
+                    modifier = Modifier
+                        .size(60.dp)
+                        .padding(10.dp),
                     contentDescription = "" // Add a valid content description
                 )
             }
             SmallFloatingActionButton(
-                onClick = {},
+                onClick = {navController.popBackStack()},
                 containerColor = MaterialTheme.colorScheme.surfaceContainer,
                 contentColor = MaterialTheme.colorScheme.surface
             ) {
                 Icon(
                     Icons.Filled.Menu,
-                    modifier = Modifier.size(60.dp).padding(10.dp),
+                    modifier = Modifier
+                        .size(60.dp)
+                        .padding(10.dp),
                     contentDescription = "" // Add a valid content description
                 )
             }
@@ -152,7 +161,9 @@ fun PaymentScreen(num_bus: Int,address: String,luka:Int,fecha:String){
             ) {
                 Icon(
                     Icons.Outlined.Edit,
-                    modifier = Modifier.size(60.dp).padding(10.dp),
+                    modifier = Modifier
+                        .size(60.dp)
+                        .padding(10.dp),
                     contentDescription = "" // Add a valid content description
                 )
             }

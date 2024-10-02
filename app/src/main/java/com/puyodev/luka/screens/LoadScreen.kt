@@ -1,4 +1,4 @@
-package com.puyodev.luka.ui
+package com.puyodev.luka.screens
 
 import androidx.compose.foundation.Image//para Image
 import androidx.compose.foundation.layout.Box
