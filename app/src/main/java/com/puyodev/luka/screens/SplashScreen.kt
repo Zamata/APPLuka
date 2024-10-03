@@ -19,7 +19,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun AnimationLoadScreen(navController : NavController) {
     LaunchedEffect(key1 = true) {
-        delay( 2500)
+        delay( 1000)
         navController.popBackStack()//para evitar retroceso a splashscreen
         navController.navigate(AppScreens.MainScreen.route)//va a pantalla principal
     }

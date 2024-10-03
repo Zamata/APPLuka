@@ -139,10 +139,11 @@ fun AppContent(navController: NavController) {
         ) {
             Row (
                 modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically // Centra verticalmente el contenido del Row
             ){
                 IconButton(onClick = {
-                    if (valor > 0) valor-- // Resta 1 si valor es mayor que 0 - limite 1
+                    if (valor > 1) valor-- // Resta 1 si valor es mayor que 0 - limite 1
                 }) {
                     Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Minus")
                 }
@@ -152,12 +153,12 @@ fun AppContent(navController: NavController) {
                     contentDescription = null,
                     modifier = Modifier
                         .padding(0.dp)
-                        .size(360.dp) // Tamaño personalizado para la imagen centrada
+                        .size(250.dp,360.dp) // Tamaño personalizado para la imagen centrada
                 )
                 IconButton(onClick = {
-                    if (valor < 10) valor++ // Suma 1 si valor es menor a 10 - limite 10
+                    if (valor < 9) valor++ // Suma 1 si valor es menor a 10 - limite 10
                 }) {
-                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Plus")
+                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = "Plus")
                 }
             }
         }
