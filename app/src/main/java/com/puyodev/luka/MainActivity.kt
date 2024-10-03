@@ -24,14 +24,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LukaTheme {
-                //PaymentScreen(num_bus = 123, address = "Av. Villa Ugarriza", luka = 5, fecha = "02/05/2024 - 21:04")
                 AppNavigation()
-                /*Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    //AnimationLoadScreen()
-                    /*Greeting(
-                        modifier = Modifier.padding(innerPadding)
-                    )*/
-                }*/
             }
         }
     }
