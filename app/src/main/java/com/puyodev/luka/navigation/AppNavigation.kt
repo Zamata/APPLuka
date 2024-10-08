@@ -9,6 +9,8 @@ import androidx.navigation.navArgument
 import com.puyodev.luka.screens.AnimationLoadScreen
 import com.puyodev.luka.screens.PaymentScreen
 import com.puyodev.luka.screens.AppContent//nombre de las funciones
+import com.puyodev.luka.screens.HistorialView
+import com.puyodev.luka.screens.ProfileScreen
 
 @Composable
 fun AppNavigation(){
@@ -19,6 +21,12 @@ fun AppNavigation(){
         }
         composable(route=AppScreens.MainScreen.route){
             AppContent(navController)
+        }
+        composable(route=AppScreens.ProfileScreen.route){
+            ProfileScreen(navController)
+        }
+        composable(route=AppScreens.HistoryScreen.route){
+            HistorialView(navController)
         }
         composable(route=AppScreens.PaymentScreen.route +"/{num_bus}/{address}/{lukitas}/{fecha}",
             arguments = listOf(

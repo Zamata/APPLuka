@@ -93,15 +93,17 @@ fun AppContent(navController: NavController) {
                 ){
                     DrawerHeader()
                     Spacer(modifier = Modifier.height(16.dp)) //space (margin) from top
-                    DrawerContent()
+                    DrawerContent(navController)
                 }
             },
             gesturesEnabled = true
         ) {
     Scaffold(
-        topBar = { CustomTopBar(navController = navController,name = "Juan", onMenuClick = {
-            scope.launch { drawerState.open() } // Abre el drawer al hacer click en el menú
-        }) },
+        topBar = {
+            CustomTopBar(navController = navController, name = "Juan", onMenuClick = {
+                scope.launch { drawerState.open() } // Abre el drawer al hacer click en el menú
+            })
+        },
         bottomBar = { CustomBottomBar() }, // Agregar la barra inferior aquí
     ) { innerPadding ->
         Column (
@@ -189,30 +191,6 @@ fun AppContent(navController: NavController) {
     }
 }
 }}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CustomTopBar(navController: NavController,name:String, onMenuClick: () -> Unit) {
-    TopAppBar(
-        modifier = Modifier
-            .shadow(elevation = 5.dp)
-            .background(Color.Gray),
-        navigationIcon = {
-            IconButton(onClick = onMenuClick) {
-                Icon(imageVector = Icons.Rounded.Menu, contentDescription = "Menu")
-            }
-        },
-        title = { Text(text = "Hola $name") },
-        actions = {
-            IconButton(onClick = { /* TODO: Search action */ }) {
-                Icon(imageVector = Icons.Default.Notifications, contentDescription = "Search")
-            }
-            IconButton(onClick = { navController.navigate("userProfile") }) {
-                Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Go to User Profile")
-            }
-        },
-    )
-}
 
 @Composable
 fun CustomBottomBar() {

@@ -125,7 +125,7 @@ fun PaymentScreen(navController: NavController,num_bus:Int,address:String,lukita
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp, 80.dp), // Ocupa todo el ancho de la pantalla
+                .padding(0.dp, 80.dp),
             horizontalArrangement = Arrangement.SpaceEvenly // Distribuye los elementos de forma uniforme
         ) {
             SmallFloatingActionButton(

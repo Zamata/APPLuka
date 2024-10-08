@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    // Agregar el plugin de Google Services
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -50,7 +53,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -69,5 +71,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.navigation.compose.v274)//para la navegacion entre pantallas
+
+    // Agregar Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+
+    // Agregar Firebase Analytics (u otros servicios de Firebase que desees)
+    implementation("com.google.firebase:firebase-analytics")
+
+    // Dependencias adicionales de Firebase que puedas necesitar
 }

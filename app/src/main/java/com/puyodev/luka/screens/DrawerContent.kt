@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Settings
@@ -36,12 +38,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.puyodev.luka.navigation.AppScreens
 import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrawerContent() {
+fun DrawerContent(navController: NavController) {
     val items = listOf(
         NavigationItems(
             title = "Home",
@@ -63,6 +66,11 @@ fun DrawerContent() {
             title = "Settings",
             selectedIcon = Icons.Filled.Settings,
             unselectedIcon = Icons.Outlined.Settings
+        ),
+        NavigationItems(
+            title = "Historial",
+            selectedIcon = Icons.Filled.Email,
+            unselectedIcon = Icons.Outlined.Email
         )
     )
 
@@ -80,9 +88,17 @@ fun DrawerContent() {
             label = { Text(text = item.title) },
             selected = index == selectedItemIndex,
             onClick = {
-                //  navController.navigate(item.route)
-
                 selectedItemIndex = index
+
+                // Lógica de navegación basada en el título del ítem seleccionado
+                when (item.title) {
+                    "Home" -> navController.navigate("home")
+                    "Info" -> navController.navigate("info")
+                    "Edit" -> navController.navigate("edit")
+                    "Settings" -> navController.navigate("settings")
+                    "Historial" -> navController.navigate(AppScreens.HistoryScreen.route)
+                }
+
                 scope.launch {
                     drawerState.close()
                 }
