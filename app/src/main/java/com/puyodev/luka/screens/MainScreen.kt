@@ -2,18 +2,24 @@ package com.puyodev.luka.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -81,116 +87,132 @@ fun AppContent(navController: NavController) {
     val drawerState = rememberDrawerState(DrawerValue.Closed) // Estado para abrir/cerrar el drawer
     val scope = rememberCoroutineScope() // Alcance de la corrutina para manejar el drawer
 
-    Surface (
+    Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
-    ){
+    ) {
         ModalNavigationDrawer(
             drawerState = drawerState, // Controla si el drawer está abierto o cerrado
             drawerContent = {
                 ModalDrawerSheet(
                     drawerContainerColor = MaterialTheme.colorScheme.primaryContainer
-                ){
+                ) {
                     DrawerHeader()
-                    Spacer(modifier = Modifier.height(16.dp)) //space (margin) from top
+                    Spacer(modifier = Modifier.height(16.dp)) // Espacio desde el borde superior
                     DrawerContent(navController)
                 }
             },
             gesturesEnabled = true
         ) {
-    Scaffold(
-        topBar = {
-            CustomTopBar(navController = navController, name = "Juan", onMenuClick = {
-                scope.launch { drawerState.open() } // Abre el drawer al hacer click en el menú
-            })
-        },
-        bottomBar = { CustomBottomBar() }, // Agregar la barra inferior aquí
-    ) { innerPadding ->
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ){
-       Row (
-           modifier = Modifier
-               .fillMaxWidth()
-               .padding(15.dp)
-               .align(Alignment.CenterHorizontally),
-           horizontalArrangement = Arrangement.SpaceEvenly // Distribuye los elementos de forma uniforme
-
-       ){
-           OutlinedButton(
-               modifier = Modifier.width(160.dp),
-               onClick = { /*TODO*/ }  // Modificación: Se pasa la función para cancelar.
-           ) {
-               Text("Monto\nS/35.00",)
-           }
-           OutlinedButton(
-               modifier = Modifier.width(160.dp),
-               onClick = { /*TODO*/ }  // Modificación: Se pasa la función para cancelar.
-           ) {
-               Text("Tarifa\nS/1.00"/*stringResource(R.string.app_name)*/)
-           }
-       }
-        Box(
-            modifier = Modifier
-                //.fillMaxSize()
-                .fillMaxWidth()
-                .padding(0.dp, 20.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically // Centra verticalmente el contenido del Row
-            ){
-                IconButton(onClick = {
-                    if (valor > 1) valor-- // Resta 1 si valor es mayor que 0 - limite 1
-                }) {
-                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Minus")
-                }
-                Text(text = "$valor", fontSize = 100.sp)
-                Image(
-                    painter = painterResource(id = R.drawable.persons),
-                    contentDescription = null,
+            Scaffold(
+                topBar = {
+                    CustomTopBar(navController = navController, name = "PuyoDEV", onMenuClick = {
+                        scope.launch { drawerState.open() } // Abre el drawer al hacer clic en el menú
+                    })
+                },
+                bottomBar = { CustomBottomBar() }, // Agregar la barra inferior aquí
+            ) { innerPadding ->
+                Column(
                     modifier = Modifier
-                        .padding(0.dp)
-                        .size(250.dp,360.dp) // Tamaño personalizado para la imagen centrada
-                )
-                IconButton(onClick = {
-                    if (valor < 9) valor++ // Suma 1 si valor es menor a 10 - limite 10
-                }) {
-                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = "Plus")
-                }
-            }
-        }
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(15.dp)
+                            .align(Alignment.CenterHorizontally),
+                        horizontalArrangement = Arrangement.SpaceEvenly // Distribuye los elementos de forma uniforme
+                    ) {
+                        OutlinedButton(
+                            modifier = Modifier.width(160.dp),
+                            onClick = { /*TODO*/ }
+                        ) {
+                            Text("Monto\nS/35.00")
+                        }
+                        OutlinedButton(
+                            modifier = Modifier.width(160.dp),
+                            onClick = { /*TODO*/ }
+                        ) {
+                            Text("Tarifa\nS/1.00")
+                        }
+                    }
 
-            Row(
-                modifier=Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(0.dp, 20.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically // Centra verticalmente el contenido del Row
+                        ) {
+                            IconButton(onClick = {
+                                if (valor > 1) valor-- // Resta 1 si valor es mayor que 0 - límite 1
+                            }) {
+                                Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Minus")
+                            }
+                            Text(text = "$valor", fontSize = 100.sp)
 
-            ) {
-                ExtendedFloatingActionButton(
-                    modifier = Modifier
-                        .width(200.dp)
-                        .padding(0.dp, 40.dp),
-                    onClick = {navController.navigate(AppScreens.PaymentScreen.route+"/102/Av. Viña del Mar 705/$valor/02-05-2024 - 21:04")},
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                    icon = {
-                        Icon(
-                            Icons.Default.KeyboardArrowUp,
-                            contentDescription = "Realizar pago" // Add a valid content description
+                            IconButton(onClick = {
+                                if (valor < 9) valor++ // Suma 1 si valor es menor a 10 - límite 10
+                            }) {
+                                Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = "Plus")
+                            }
+                        }
+                    }
+
+                    // LazyVerticalGrid con GridCells.Adaptive para ajustar el tamaño de las imágenes
+                    LazyVerticalGrid(
+                        columns = GridCells.Adaptive(minSize = 60.dp), // El tamaño mínimo que se ajusta según el espacio
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        contentPadding = PaddingValues(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(valor) { // Repite la imagen tantas veces como el valor
+                            Image(
+                                painter = painterResource(id = R.drawable.person),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .aspectRatio(1f) // Mantiene el aspecto cuadrado
+                                    .clip(RoundedCornerShape(8.dp)) // Opcional: redondear las esquinas
+                                    .border(1.dp, Color.Gray) // Opcional: agregar un borde
+                            )
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        ExtendedFloatingActionButton(
+                            modifier = Modifier
+                                .width(200.dp)
+                                .padding(0.dp, 40.dp),
+                            onClick = {
+                                navController.navigate(AppScreens.PaymentScreen.route + "/102/Av. Viña del Mar 705/$valor/02-05-2024 - 21:04")
+                            },
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                            contentColor = MaterialTheme.colorScheme.primary,
+                            icon = {
+                                Icon(
+                                    Icons.Default.KeyboardArrowUp,
+                                    contentDescription = "Realizar pago" // Add a valid content description
+                                )
+                            },
+                            text = { Text(text = "Pagar", fontSize = 20.sp) }
                         )
-                    },
-                    text = { Text(text = "Pagar", fontSize = 20.sp) }
-                )
+                    }
+                }
             }
         }
-
     }
 }
-}}
 
 @Composable
 fun CustomBottomBar() {

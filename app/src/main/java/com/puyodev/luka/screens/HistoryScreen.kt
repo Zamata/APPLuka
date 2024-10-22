@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -30,13 +32,13 @@ val historial = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistorialView(navController: NavController) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed) // Estaddsdso para abrir/cerrar el drawer
-    val scope = rememberCoroutineScope() // Alcance de la corrutina pasdsdsra manejar el drawer
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
             CustomTopBar(navController = navController, name = "Juan", onMenuClick = {
-                scope.launch { drawerState.open() } // Abre el drawer al hacer click en el menú
+                scope.launch { drawerState.open() }
             })
         }
     ) { innerPadding ->
@@ -48,7 +50,7 @@ fun HistorialView(navController: NavController) {
         ) {
             items(historial) { operacion ->
                 OperacionItem(operacion)
-                Spacer(modifier = Modifier.height(10.dp)) // Espacio entre cada item
+                Spacer(modifier = Modifier.height(10.dp))
             }
         }
     }
@@ -56,6 +58,13 @@ fun HistorialView(navController: NavController) {
 
 @Composable
 fun OperacionItem(operacion: Operacion) {
+    // Definir el color del monto basado en el tipo de operación
+    val colorMonto = if (operacion.operacion.startsWith("Recarga")) {
+        Color(0xFF4CAF50) // Verde para recargas
+    } else {
+        Color(0xFFF44336) // Rojo para pagos
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,21 +72,24 @@ fun OperacionItem(operacion: Operacion) {
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Row(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                verticalArrangement = Arrangement.Center, // Centra los elementos verticalmente
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(text = "Operación: ${operacion.operacion}", style = MaterialTheme.typography.titleLarge)
-                Text(text = "Fecha: ${operacion.fecha}", style = MaterialTheme.typography.bodyMedium)
-            }
-            Column(
-                verticalArrangement = Arrangement.Center, // Centra los elementos verticalmente
-                horizontalAlignment = Alignment.CenterHorizontally
+                verticalArrangement = Arrangement.Center,
             ) {
-                Text(text = "Monto: ${operacion.monto}", style = MaterialTheme.typography.bodyMedium)
+                Text(text = operacion.operacion, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                Text(text = operacion.fecha, style = MaterialTheme.typography.bodyMedium)
             }
+
+            Text(
+                text = operacion.monto,
+                style = MaterialTheme.typography.bodyMedium,
+                color = colorMonto,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
@@ -85,5 +97,5 @@ fun OperacionItem(operacion: Operacion) {
 @Preview(showBackground = true)
 @Composable
 fun HistorialViewPreview() {
-    //HistorialView()
+    // Aquí podrías crear una versión de prueba de la UI para verificar cómo se ve
 }

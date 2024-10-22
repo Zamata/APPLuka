@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.puyodev.luka.R
@@ -105,7 +106,8 @@ fun PaymentScreen(navController: NavController,num_bus:Int,address:String,lukita
                             horizontalArrangement = Arrangement.Center // Centra el contenido del Row horizontalmente
 
                         ){
-                            Text(text = "Pago:\n S/$lukitas")
+                            Text(text = "Pago:\nS/$lukitas",
+                                textAlign = TextAlign.Center)
                         }
                         HorizontalDivider(modifier = Modifier.fillMaxWidth())
                         Row (
@@ -115,7 +117,10 @@ fun PaymentScreen(navController: NavController,num_bus:Int,address:String,lukita
                             horizontalArrangement = Arrangement.Center // Centra el contenido del Row horizontalmente
 
                         ){
-                            Text(text = "Paradero:\n$address")
+                            Text(
+                                text = "Paradero:\n$address",
+                                textAlign = TextAlign.Center
+                                )
                         }
                     }
                 }

@@ -47,7 +47,7 @@ import kotlinx.coroutines.launch
 fun DrawerContent(navController: NavController) {
     val items = listOf(
         NavigationItems(
-            title = "Home",
+            title = "Inicio",
             selectedIcon = Icons.Filled.Home,
             unselectedIcon = Icons.Outlined.Home
         ),
@@ -57,13 +57,13 @@ fun DrawerContent(navController: NavController) {
             unselectedIcon = Icons.Outlined.Info
         ),
         NavigationItems(
-            title = "Edit",
+            title = "Editar",
             selectedIcon = Icons.Filled.Edit,
             unselectedIcon = Icons.Outlined.Edit,
             badgeCount = 105
         ),
         NavigationItems(
-            title = "Settings",
+            title = "Configuraciones",
             selectedIcon = Icons.Filled.Settings,
             unselectedIcon = Icons.Outlined.Settings
         ),

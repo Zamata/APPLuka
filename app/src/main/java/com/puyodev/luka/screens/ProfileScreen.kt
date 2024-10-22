@@ -74,7 +74,7 @@ horizontalAlignment = Alignment.CenterHorizontally
                         //isFormValid = name.text.isNotEmpty() && email.text.isNotEmpty() && password.text.isNotEmpty()
                     },
                 ) {
-                    Text("Modificar")
+                    Text("Monto")
                 }
                 Button(
                     shape = RectangleShape, // Hace que el botón sea rectangular
@@ -84,7 +84,7 @@ horizontalAlignment = Alignment.CenterHorizontally
                         //isFormValid = name.text.isNotEmpty() && email.text.isNotEmpty() && password.text.isNotEmpty()
                     },
                 ) {
-                    Text("Modificar")
+                    Text("Subir Imagen")
                 }
             }
         }
@@ -98,21 +98,21 @@ horizontalAlignment = Alignment.CenterHorizontally
             )
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
-                value = "name",
+                value = "jeefry753@gmail.com",
                 onValueChange = { "name" },
                 label = { Text("Email") },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
-                value = "name",
+                value = "902887796",
                 onValueChange = { "name" },
                 label = { Text("Número de celular") },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
-                value = "name",
+                value = "- - - - - - - -",
                 onValueChange = { "name" },
                 label = { Text("Contraseña") },
                 modifier = Modifier.fillMaxWidth()
