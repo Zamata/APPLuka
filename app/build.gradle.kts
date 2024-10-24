@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
+    //Procesamiento de anotaciones en Kotlin
+    id("com.google.devtools.ksp")
+    //inyeccion de dependencias
+    id("dagger.hilt.android.plugin")
     // Agregar el plugin de Google Services
     id("com.google.gms.google-services")
 }
@@ -64,6 +67,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.common.ktx)
+    implementation(libs.androidx.material3.android)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
@@ -83,4 +87,10 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     // Dependencias adicionales de Firebase que puedas necesitar
+
+    //inyeccion de dependencias - hilt
+    implementation("com.google.dagger:hilt-android:2.47")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    //- compilador
+    ksp("com.google.dagger:hilt-compiler:2.47")
 }
