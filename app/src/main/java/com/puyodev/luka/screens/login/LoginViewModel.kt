@@ -8,6 +8,7 @@ import com.puyodev.luka.common.ext.isValidEmail
 import com.puyodev.luka.common.snackbar.SnackbarManager
 import com.puyodev.luka.model.service.AccountService
 import com.puyodev.luka.model.service.LogService
+import com.puyodev.luka.navigation.AppScreens
 import com.puyodev.luka.screens.LukaViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -46,7 +47,8 @@ class LoginViewModel @Inject constructor(
 
     launchCatching {
       accountService.authenticate(email, password)
-      //openAndPopUp(SETTINGS_SCREEN, LOGIN_SCREEN)
+      // Si es exitoso, navega a SettingsScreen y elimina LoginScreen de la pila
+      openAndPopUp(AppScreens.MainScreen.route, AppScreens.LoginScreen.route)
     }
   }
 
@@ -60,5 +62,10 @@ class LoginViewModel @Inject constructor(
       accountService.sendRecoveryEmail(email)
       SnackbarManager.showMessage(AppText.recovery_email_sent)
     }
+  }
+
+  fun onCreateAccountClick(openAndPopUp: (String, String) -> Unit) {
+      // Si es exitoso, navega a SignUpScreen y elimina LoginScreen de la pila
+      openAndPopUp(AppScreens.SignUpScreen.route, AppScreens.LoginScreen.route)
   }
 }

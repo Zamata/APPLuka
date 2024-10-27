@@ -6,11 +6,13 @@ import androidx.navigation.compose.NavHost//controller
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.puyodev.luka.screens.AnimationLoadScreen
+import com.puyodev.luka.screens.sign_up.SignUpScreen
+import com.puyodev.luka.screens.splash.AnimationLoadScreen
 import com.puyodev.luka.screens.PaymentScreen
 import com.puyodev.luka.screens.AppContent//nombre de las funciones
 import com.puyodev.luka.screens.HistorialView
 import com.puyodev.luka.screens.ProfileScreen
+import com.puyodev.luka.screens.login.LoginScreen
 
 @Composable
 fun AppNavigation(){
@@ -22,6 +24,25 @@ fun AppNavigation(){
         composable(route=AppScreens.MainScreen.route){
             AppContent(navController)
         }
+        //agregando signup and login
+        composable(route = AppScreens.LoginScreen.route) {
+            LoginScreen(openAndPopUp = { route, popUp ->
+                navController.navigate(route) {
+                    launchSingleTop = true
+                    popUpTo(popUp) { inclusive = true }
+                }
+            })
+        }
+
+        composable(route = AppScreens.SignUpScreen.route) {
+            SignUpScreen(openAndPopUp = { route, popUp ->
+                navController.navigate(route) {
+                    launchSingleTop = true
+                    popUpTo(popUp) { inclusive = true }
+                }
+            })
+        }
+
         composable(route=AppScreens.ProfileScreen.route){
             ProfileScreen(navController)
         }

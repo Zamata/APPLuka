@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package com.example.makeitso.screens.sign_up
+package com.puyodev.luka.screens.sign_up
 
 data class SignUpUiState(
   val email: String = "",

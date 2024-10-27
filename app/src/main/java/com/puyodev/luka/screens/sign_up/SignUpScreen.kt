@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package com.example.makeitso.screens.sign_up
+package com.puyodev.luka.screens.sign_up
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -24,11 +24,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.makeitso.R.string as AppText
-import com.example.makeitso.common.composable.*
-import com.example.makeitso.common.ext.basicButton
-import com.example.makeitso.common.ext.fieldModifier
-import com.example.makeitso.theme.MakeItSoTheme
+import com.puyodev.luka.screens.sign_up.SignUpViewModel
+import com.puyodev.luka.R.string as AppText
+import com.puyodev.luka.common.composable.*
+import com.puyodev.luka.common.ext.basicButton
+import com.puyodev.luka.common.ext.fieldModifier
+import com.puyodev.luka.ui.theme.LukaTheme
 
 @Composable
 fun SignUpScreen(
@@ -60,7 +61,10 @@ fun SignUpScreenContent(
   BasicToolbar(AppText.create_account)
 
   Column(
-    modifier = modifier.fillMaxWidth().fillMaxHeight().verticalScroll(rememberScrollState()),
+    modifier = modifier
+      .fillMaxWidth()
+      .fillMaxHeight()
+      .verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
@@ -81,7 +85,7 @@ fun SignUpScreenPreview() {
     email = "email@test.com"
   )
 
-  MakeItSoTheme {
+  LukaTheme {
     SignUpScreenContent(
       uiState = uiState,
       onEmailChange = { },

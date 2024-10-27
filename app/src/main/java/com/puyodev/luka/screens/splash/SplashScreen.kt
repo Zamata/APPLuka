@@ -1,4 +1,4 @@
-package com.puyodev.luka.screens
+package com.puyodev.luka.screens.splash
 
 import androidx.compose.foundation.Image//para Image
 import androidx.compose.foundation.layout.Box
@@ -11,17 +11,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.puyodev.luka.R
 import com.puyodev.luka.navigation.AppScreens
 import kotlinx.coroutines.delay
+
+private const val SPLASH_TIMEOUT = 1000L
+
+@Composable
+fun SplashScreen(
+    openAndPopUp: (String, String) -> Unit,
+    viewModel: SplashViewModel = hiltViewModel()
+) {
+    AnimationLoadScreen(
+        onAppStart = { viewModel.onAppStart(openAndPopUp) },
+        shouldShowError = viewModel.showError.value
+    )
+}
 
 @Composable
 fun AnimationLoadScreen(navController : NavController) {
     LaunchedEffect(key1 = true) {
         delay( 1000)
         navController.popBackStack()//para evitar retroceso a splashscreen
-        navController.navigate(AppScreens.MainScreen.route)//va a pantalla principal
+        navController.navigate(AppScreens.LoginScreen.route)//va a pantalla principal
     }
     Box(
         modifier = Modifier

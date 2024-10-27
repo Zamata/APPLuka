@@ -28,7 +28,8 @@ fun LoginScreen(
     onEmailChange = viewModel::onEmailChange,
     onPasswordChange = viewModel::onPasswordChange,
     onSignInClick = { viewModel.onSignInClick(openAndPopUp) },
-    onForgotPasswordClick = viewModel::onForgotPasswordClick
+    onForgotPasswordClick = viewModel::onForgotPasswordClick,
+    onCreateAccountClick = { viewModel.onCreateAccountClick(openAndPopUp) },
   )
 }
 
@@ -39,7 +40,8 @@ fun LoginScreenContent(
   onEmailChange: (String) -> Unit,
   onPasswordChange: (String) -> Unit,
   onSignInClick: () -> Unit,
-  onForgotPasswordClick: () -> Unit
+  onForgotPasswordClick: () -> Unit,
+  onCreateAccountClick: () -> Unit,
 ) {
   BasicToolbar(AppText.login_details)
 
@@ -59,6 +61,9 @@ fun LoginScreenContent(
     BasicTextButton(AppText.forgot_password, Modifier.textButton()) {
       onForgotPasswordClick()
     }
+    BasicTextButton(AppText.start_to_create_account, Modifier.textButton()) {
+      onCreateAccountClick()
+    }
   }
 }
 
@@ -66,7 +71,7 @@ fun LoginScreenContent(
 @Composable
 fun LoginScreenPreview() {
   val uiState = LoginUiState(
-    email = "email@test.com"
+    email = "correo123@gmail.com"
   )
 
   LukaTheme {
@@ -75,7 +80,8 @@ fun LoginScreenPreview() {
       onEmailChange = { },
       onPasswordChange = { },
       onSignInClick = { },
-      onForgotPasswordClick = { }
+      onForgotPasswordClick = { },
+      onCreateAccountClick = { }
     )
   }
 }

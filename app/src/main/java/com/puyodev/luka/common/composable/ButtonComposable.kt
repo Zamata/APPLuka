@@ -20,8 +20,8 @@ fun BasicButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
     modifier = modifier,
     colors =
       ButtonDefaults.buttonColors(
-        backgroundColor = MaterialTheme.colors.primary,
-        contentColor = MaterialTheme.colors.onPrimary
+        containerColor  = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary
       )
   ) {
     Text(text = stringResource(text), fontSize = 16.sp)
@@ -34,8 +34,8 @@ fun DialogConfirmButton(@StringRes text: Int, action: () -> Unit) {
     onClick = action,
     colors =
       ButtonDefaults.buttonColors(
-        backgroundColor = MaterialTheme.colors.primary,
-        contentColor = MaterialTheme.colors.onPrimary
+        containerColor  = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary
       )
   ) {
     Text(text = stringResource(text))
@@ -48,8 +48,8 @@ fun DialogCancelButton(@StringRes text: Int, action: () -> Unit) {
     onClick = action,
     colors =
       ButtonDefaults.buttonColors(
-        backgroundColor = MaterialTheme.colors.onPrimary,
-        contentColor = MaterialTheme.colors.primary
+        containerColor  = MaterialTheme.colorScheme.onPrimary,
+        contentColor = MaterialTheme.colorScheme.primary
       )
   ) {
     Text(text = stringResource(text))

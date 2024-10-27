@@ -14,19 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package com.example.makeitso.screens.sign_up
+package com.puyodev.luka.screens.sign_up
 
 import androidx.compose.runtime.mutableStateOf
-import com.example.makeitso.R.string as AppText
-import com.example.makeitso.SETTINGS_SCREEN
-import com.example.makeitso.SIGN_UP_SCREEN
-import com.example.makeitso.common.ext.isValidEmail
-import com.example.makeitso.common.ext.isValidPassword
-import com.example.makeitso.common.ext.passwordMatches
-import com.example.makeitso.common.snackbar.SnackbarManager
-import com.example.makeitso.model.service.AccountService
-import com.example.makeitso.model.service.LogService
-import com.example.makeitso.screens.MakeItSoViewModel
+import com.puyodev.luka.R.string as AppText
+//import com.example.makeitso.SETTINGS_SCREEN
+//import com.example.makeitso.SIGN_UP_SCREEN
+import com.puyodev.luka.common.ext.isValidEmail
+import com.puyodev.luka.common.ext.isValidPassword
+import com.puyodev.luka.common.ext.passwordMatches
+import com.puyodev.luka.common.snackbar.SnackbarManager
+import com.puyodev.luka.model.service.AccountService
+import com.puyodev.luka.model.service.LogService
+import com.puyodev.luka.navigation.AppScreens
+import com.puyodev.luka.screens.LukaViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -34,7 +35,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
   private val accountService: AccountService,
   logService: LogService
-) : MakeItSoViewModel(logService) {
+) : LukaViewModel(logService) {
   var uiState = mutableStateOf(SignUpUiState())
     private set
 
@@ -73,7 +74,7 @@ class SignUpViewModel @Inject constructor(
 
     launchCatching {
       accountService.linkAccount(email, password)
-      openAndPopUp(SETTINGS_SCREEN, SIGN_UP_SCREEN)
+      openAndPopUp(AppScreens.MainScreen.route, AppScreens.SignUpScreen.route)
     }
   }
 }
