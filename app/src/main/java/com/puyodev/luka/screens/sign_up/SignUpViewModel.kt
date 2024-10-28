@@ -17,6 +17,8 @@ limitations under the License.
 package com.puyodev.luka.screens.sign_up
 
 import androidx.compose.runtime.mutableStateOf
+import com.puyodev.luka.PAY_SCREEN
+import com.puyodev.luka.SIGNUP_SCREEN
 import com.puyodev.luka.R.string as AppText
 //import com.example.makeitso.SETTINGS_SCREEN
 //import com.example.makeitso.SIGN_UP_SCREEN
@@ -74,7 +76,7 @@ class SignUpViewModel @Inject constructor(
 
     launchCatching {
       accountService.linkAccount(email, password)
-      openAndPopUp(AppScreens.MainScreen.route, AppScreens.SignUpScreen.route)
+      openAndPopUp(PAY_SCREEN, SIGNUP_SCREEN)
     }
   }
 }

@@ -14,20 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package com.puyodev.luka.model.service
+package com.puyodev.luka.model.service.impl
 
-import com.puyodev.luka.model.User
-import kotlinx.coroutines.flow.Flow
+import com.puyodev.luka.model.service.LogService
+import com.google.firebase.crashlytics.crashlytics
+import com.google.firebase.Firebase
+import javax.inject.Inject
 
-interface AccountService {
-  val currentUserId: String
-  val hasUser: Boolean
-
-  val currentUser: Flow<User>
-
-  suspend fun authenticate(email: String, password: String)
-  suspend fun sendRecoveryEmail(email: String)
-  suspend fun linkAccount(email: String, password: String)
-  suspend fun deleteAccount()
-  suspend fun signOut()
+class LogServiceImpl @Inject constructor() : LogService {
+  override fun logNonFatalCrash(throwable: Throwable) =
+    Firebase.crashlytics.recordException(throwable)
 }

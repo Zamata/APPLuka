@@ -1,9 +1,10 @@
 package com.puyodev.luka.screens.login
 
 import androidx.compose.runtime.mutableStateOf
-//import com.puyodev.luka.LOGIN_SCREEN
+import com.puyodev.luka.LOGIN_SCREEN
+import com.puyodev.luka.SIGNUP_SCREEN
 import com.puyodev.luka.R.string as AppText
-//import com.puyodev.luka.SETTINGS_SCREEN
+import com.puyodev.luka.PAY_SCREEN
 import com.puyodev.luka.common.ext.isValidEmail
 import com.puyodev.luka.common.snackbar.SnackbarManager
 import com.puyodev.luka.model.service.AccountService
@@ -48,7 +49,7 @@ class LoginViewModel @Inject constructor(
     launchCatching {
       accountService.authenticate(email, password)
       // Si es exitoso, navega a SettingsScreen y elimina LoginScreen de la pila
-      openAndPopUp(AppScreens.MainScreen.route, AppScreens.LoginScreen.route)
+      openAndPopUp(PAY_SCREEN, LOGIN_SCREEN)
     }
   }
 
@@ -66,6 +67,6 @@ class LoginViewModel @Inject constructor(
 
   fun onCreateAccountClick(openAndPopUp: (String, String) -> Unit) {
       // Si es exitoso, navega a SignUpScreen y elimina LoginScreen de la pila
-      openAndPopUp(AppScreens.SignUpScreen.route, AppScreens.LoginScreen.route)
+    openAndPopUp(SIGNUP_SCREEN, LOGIN_SCREEN)
   }
 }

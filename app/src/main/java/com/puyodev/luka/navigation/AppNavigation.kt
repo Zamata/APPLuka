@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.puyodev.luka.screens.sign_up.SignUpScreen
-import com.puyodev.luka.screens.splash.AnimationLoadScreen
+//import com.puyodev.luka.screens.splash.AnimationLoadScreen
 import com.puyodev.luka.screens.PaymentScreen
 import com.puyodev.luka.screens.AppContent//nombre de las funciones
 import com.puyodev.luka.screens.HistorialView
@@ -19,7 +19,7 @@ fun AppNavigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = AppScreens.SplashScreen.route) {
         composable(route=AppScreens.SplashScreen.route){
-            AnimationLoadScreen(navController)
+            //AnimationLoadScreen(navController)
         }
         composable(route=AppScreens.MainScreen.route){
             AppContent(navController)
