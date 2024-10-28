@@ -24,7 +24,9 @@ import com.puyodev.luka.common.composable.PermissionDialog
 import com.puyodev.luka.common.composable.RationaleDialog
 import com.puyodev.luka.common.snackbar.SnackbarManager
 import com.puyodev.luka.navigation.AppScreens
-import com.puyodev.luka.screens.AppContent
+//import com.puyodev.luka.screens.AppContent
+import com.puyodev.luka.screens.Pay.PayScreen
+import com.puyodev.luka.screens.Profile.ProfileScreen
 import com.puyodev.luka.screens.ProfileScreen
 //import com.example.makeitso.screens.edit_task.EditTaskScreen
 import com.puyodev.luka.screens.login.LoginScreen
@@ -135,11 +137,14 @@ fun NavGraphBuilder.lukaGraph(appState: LukaAppState) {
     }
 
     composable(PAY_SCREEN){
-        AppContent(rememberNavController())
+        PayScreen(openScreen = { route -> appState.navigate(route) })
     }
 
     composable(PROFILE_SCREEN){
-        ProfileScreen(rememberNavController())
+        ProfileScreen(
+            restartApp = { route -> appState.clearAndNavigate(route) },
+            openScreen = { route -> appState.navigate(route) }
+        )
     }
 
     /*

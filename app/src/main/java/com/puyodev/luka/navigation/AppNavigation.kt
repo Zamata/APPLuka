@@ -9,7 +9,7 @@ import androidx.navigation.navArgument
 import com.puyodev.luka.screens.sign_up.SignUpScreen
 //import com.puyodev.luka.screens.splash.AnimationLoadScreen
 import com.puyodev.luka.screens.PaymentScreen
-import com.puyodev.luka.screens.AppContent//nombre de las funciones
+//import com.puyodev.luka.screens.AppContent//nombre de las funciones
 import com.puyodev.luka.screens.HistorialView
 import com.puyodev.luka.screens.ProfileScreen
 import com.puyodev.luka.screens.login.LoginScreen
@@ -22,7 +22,7 @@ fun AppNavigation(){
             //AnimationLoadScreen(navController)
         }
         composable(route=AppScreens.MainScreen.route){
-            AppContent(navController)
+            //AppContent(navController)
         }
         //agregando signup and login
         composable(route = AppScreens.LoginScreen.route) {

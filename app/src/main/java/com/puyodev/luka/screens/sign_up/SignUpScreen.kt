@@ -30,6 +30,7 @@ import com.puyodev.luka.common.composable.*
 import com.puyodev.luka.common.ext.basicButton
 import com.puyodev.luka.common.ext.fieldModifier
 import com.puyodev.luka.ui.theme.LukaTheme
+import android.util.Log
 
 @Composable
 fun SignUpScreen(

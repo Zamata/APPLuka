@@ -15,7 +15,5 @@ class PayViewModel @Inject constructor(
     logService: LogService,
     private val configurationService: ConfigurationService
 ) : LukaViewModel(logService) {
-
     fun onProfileClick(openScreen: (String) -> Unit) = openScreen(PROFILE_SCREEN)
-
 }

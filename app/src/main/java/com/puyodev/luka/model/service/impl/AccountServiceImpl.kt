@@ -29,17 +29,18 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
       awaitClose { auth.removeAuthStateListener(listener) }
     }
 
+  // Crear una nueva cuenta
+  override suspend fun createAccount(email: String, password: String) {
+    auth.createUserWithEmailAndPassword(email, password).await()
+  }
+
+  // Iniciar sesión con usuario existente
   override suspend fun authenticate(email: String, password: String) {
     auth.signInWithEmailAndPassword(email, password).await()
   }
 
   override suspend fun sendRecoveryEmail(email: String) {
     auth.sendPasswordResetEmail(email).await()
-  }
-
-  override suspend fun linkAccount(email: String, password: String) {
-    val credential = EmailAuthProvider.getCredential(email, password)
-    auth.currentUser!!.linkWithCredential(credential).await()
   }
 
   override suspend fun deleteAccount() {
@@ -51,9 +52,5 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
       auth.currentUser!!.delete()
     }
     auth.signOut()
-  }
-
-  companion object {
-    private const val LINK_ACCOUNT_TRACE = "linkAccount"
   }
 }
