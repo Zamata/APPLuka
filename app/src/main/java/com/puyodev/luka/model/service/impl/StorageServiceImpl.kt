@@ -32,7 +32,7 @@ import kotlinx.coroutines.tasks.await
 
 class StorageServiceImpl
 @Inject
-constructor(private val firestore: FirebaseFirestore, private val auth: AccountService) :
+constructor(private val firestore: Firebase Firestore, private val auth: AccountService) :
   StorageService {
 
   @OptIn(ExperimentalCoroutinesApi::class)

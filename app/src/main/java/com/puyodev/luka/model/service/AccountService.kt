@@ -25,7 +25,7 @@ interface AccountService {
 
   val currentUser: Flow<User>
 
-  suspend fun createAccount(email: String, password: String) // Nuevo método
+  suspend fun createAccount(email: String, password: String,name:String) // Nuevo método
   suspend fun authenticate(email: String, password: String)
   suspend fun sendRecoveryEmail(email: String)
   suspend fun deleteAccount()

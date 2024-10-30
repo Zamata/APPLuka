@@ -6,6 +6,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -30,6 +31,18 @@ fun BasicField(
     value = value,
     onValueChange = { onNewValue(it) },
     placeholder = { Text(stringResource(text)) }
+  )
+}
+
+@Composable
+fun UsernameField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
+  OutlinedTextField(
+    singleLine = true,
+    modifier = modifier,
+    value = value,
+    onValueChange = { onNewValue(it) },
+    placeholder = { Text(stringResource(AppText.username)) },
+    leadingIcon = { Icon(imageVector = Icons.Default.Face, contentDescription = "Username") }
   )
 }
 

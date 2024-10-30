@@ -1,9 +1,6 @@
 package com.puyodev.luka
 
-import android.Manifest
 import android.content.res.Resources
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -19,15 +16,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.puyodev.luka.common.composable.PermissionDialog
-import com.puyodev.luka.common.composable.RationaleDialog
 import com.puyodev.luka.common.snackbar.SnackbarManager
-import com.puyodev.luka.navigation.AppScreens
 //import com.puyodev.luka.screens.AppContent
-import com.puyodev.luka.screens.Pay.PayScreen
-import com.puyodev.luka.screens.Profile.ProfileScreen
-import com.puyodev.luka.screens.ProfileScreen
+import com.puyodev.luka.screens.pay.PayScreen
+import com.puyodev.luka.screens.profile.ProfileScreen
 //import com.example.makeitso.screens.edit_task.EditTaskScreen
 import com.puyodev.luka.screens.login.LoginScreen
 //import com.puyodev.luka.screens.settings.SettingsScreen

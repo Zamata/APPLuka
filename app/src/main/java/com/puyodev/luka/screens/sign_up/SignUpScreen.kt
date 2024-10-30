@@ -31,6 +31,7 @@ import com.puyodev.luka.common.ext.basicButton
 import com.puyodev.luka.common.ext.fieldModifier
 import com.puyodev.luka.ui.theme.LukaTheme
 import android.util.Log
+import com.puyodev.luka.common.ext.textButton
 
 @Composable
 fun SignUpScreen(
@@ -41,10 +42,12 @@ fun SignUpScreen(
 
   SignUpScreenContent(
     uiState = uiState,
+    onUsernameChange = viewModel::onUsernameChange,
     onEmailChange = viewModel::onEmailChange,
     onPasswordChange = viewModel::onPasswordChange,
     onRepeatPasswordChange = viewModel::onRepeatPasswordChange,
-    onSignUpClick = { viewModel.onSignUpClick(openAndPopUp) }
+    onSignUpClick = { viewModel.onSignUpClick(openAndPopUp) },
+    onLoginAccountClick = { viewModel.onLoginAccountClick(openAndPopUp) },
   )
 }
 
@@ -52,10 +55,12 @@ fun SignUpScreen(
 fun SignUpScreenContent(
   modifier: Modifier = Modifier,
   uiState: SignUpUiState,
+  onUsernameChange: (String) -> Unit,
   onEmailChange: (String) -> Unit,
   onPasswordChange: (String) -> Unit,
   onRepeatPasswordChange: (String) -> Unit,
-  onSignUpClick: () -> Unit
+  onSignUpClick: () -> Unit,
+  onLoginAccountClick: () -> Unit
 ) {
   val fieldModifier = Modifier.fieldModifier()
 
@@ -69,12 +74,16 @@ fun SignUpScreenContent(
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
+    UsernameField(uiState.username, onUsernameChange, fieldModifier)
     EmailField(uiState.email, onEmailChange, fieldModifier)
     PasswordField(uiState.password, onPasswordChange, fieldModifier)
     RepeatPasswordField(uiState.repeatPassword, onRepeatPasswordChange, fieldModifier)
 
     BasicButton(AppText.create_account, Modifier.basicButton()) {
       onSignUpClick()
+    }
+    BasicTextButton(AppText.start_to_create_account, Modifier.textButton()) {
+      onLoginAccountClick()
     }
   }
 }
@@ -92,7 +101,9 @@ fun SignUpScreenPreview() {
       onEmailChange = { },
       onPasswordChange = { },
       onRepeatPasswordChange = { },
-      onSignUpClick = { }
+      onSignUpClick = { },
+      onUsernameChange = { },
+      onLoginAccountClick = { }
     )
   }
 }

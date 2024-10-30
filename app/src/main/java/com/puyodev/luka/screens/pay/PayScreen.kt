@@ -1,20 +1,16 @@
-package com.puyodev.luka.screens.Pay
+package com.puyodev.luka.screens.pay
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,14 +26,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.puyodev.luka.R
-import com.puyodev.luka.R.drawable as AppIcon
 import com.puyodev.luka.R.string as AppText
 import com.puyodev.luka.common.composable.ActionToolbar
-import com.puyodev.luka.common.ext.smallSpacer
 import com.puyodev.luka.common.ext.toolbarActions
-import com.puyodev.luka.navigation.AppScreens
 import com.puyodev.luka.screens.DrawerContent
 //import com.example.makeitso.model.Task
 import com.puyodev.luka.ui.theme.LukaTheme

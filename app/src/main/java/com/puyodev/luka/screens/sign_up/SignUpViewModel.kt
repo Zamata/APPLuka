@@ -17,33 +17,42 @@ limitations under the License.
 package com.puyodev.luka.screens.sign_up
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateOf//De Compose, permite crear un estado observable para la UI.
+import com.puyodev.luka.LOGIN_SCREEN
 import com.puyodev.luka.PAY_SCREEN
 import com.puyodev.luka.SIGNUP_SCREEN
 import com.puyodev.luka.R.string as AppText
 import com.puyodev.luka.common.ext.isValidEmail
 import com.puyodev.luka.common.ext.isValidPassword
+import com.puyodev.luka.common.ext.isValidUsername
 import com.puyodev.luka.common.ext.passwordMatches
 import com.puyodev.luka.common.snackbar.SnackbarManager
-import com.puyodev.luka.model.service.AccountService
-import com.puyodev.luka.model.service.LogService
+import com.puyodev.luka.model.service.AccountService//autenticacion de cuenta
+import com.puyodev.luka.model.service.LogService//para logs
 import com.puyodev.luka.navigation.AppScreens
 import com.puyodev.luka.screens.LukaViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel//inyeccion de dependencias
 import javax.inject.Inject
 
-@HiltViewModel
+@HiltViewModel//marcando clase para Hilt
 class SignUpViewModel @Inject constructor(
-  private val accountService: AccountService,
+  private val accountService: AccountService,//inyeccion de servicios
   logService: LogService
 ) : LukaViewModel(logService) {
-  var uiState = mutableStateOf(SignUpUiState())
-    private set
+  var uiState = mutableStateOf(SignUpUiState())//observando los campos del form
+    private set//solo cambios de uistate por dentro del viewmodel
 
   private val email
     get() = uiState.value.email
   private val password
     get() = uiState.value.password
+  private val username
+    get() = uiState.value.username
+
+  //actualizando los valores de email,password,etc. en uistate
+  fun onUsernameChange(newValue: String) {
+    uiState.value = uiState.value.copy(username = newValue)
+  }
 
   fun onEmailChange(newValue: String) {
     uiState.value = uiState.value.copy(email = newValue)
@@ -57,7 +66,18 @@ class SignUpViewModel @Inject constructor(
     uiState.value = uiState.value.copy(repeatPassword = newValue)
   }
 
+  fun onLoginAccountClick(openAndPopUp: (String, String) -> Unit) {
+    // Para navegar a LoginScreen y elimina SignUpScreen de la pila
+    openAndPopUp(LOGIN_SCREEN,SIGNUP_SCREEN)
+  }
+
+  //al presionar el boton de envio - proceso de validacion y creacion de cuenta y redireccion
   fun onSignUpClick(openAndPopUp: (String, String) -> Unit) {
+    if (!username.isValidUsername()) {
+      SnackbarManager.showMessage(AppText.username_error)
+      return
+    }
+
     if (!email.isValidEmail()) {
       SnackbarManager.showMessage(AppText.email_error)
       return
@@ -74,13 +94,14 @@ class SignUpViewModel @Inject constructor(
     }
     Log.d("SignUpViewModel", "All validations passed, attempting to link account")
 
+    //creacion de la cuenta - corrutina
     launchCatching {
       try {
-        accountService.createAccount(email, password)
-        Log.d("SignUpViewModel", "Account successfully created")
+        accountService.createAccount(email, password, username)
+        Log.d("SignUpViewModel", "Creación de la cuenta lograda")
         openAndPopUp(PAY_SCREEN, SIGNUP_SCREEN)
       } catch (e: Exception) {
-        Log.e("SignUpViewModel", "Account creation failed", e)
+        Log.e("SignUpViewModel", "Creacion de la cuenta fallida", e)
         SnackbarManager.showMessage(AppText.sign_in)//cambiar o crear valor sign_error
       }
     }

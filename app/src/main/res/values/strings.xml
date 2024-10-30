@@ -1,27 +1,31 @@
 <resources>
     <!-- Common -->
     <string name="app_name">Luka</string>
+    <string name="username">Nombre de usuario</string>
     <string name="email">Correo</string>
     <string name="password">Contraseña</string>
     <string name="repeat_password">Repetir contraseña</string>
     <string name="generic_error">Something wrong happened. Please try again.</string>
-    <string name="email_error">Please insert a valid email.</string>
+    <string name="email_error">Por favor ingresar un correo válido.</string>
+    <string name="username_error">Incorrecto. Solo se permite letras y un rango de cantidad de caracteres de 5 a 35 .</string>
     <string name="cancel">Cancel</string>
     <string name="try_again">Try again</string>
     <string name="ok">OK</string>
 
     <!-- LoginScreen -->
     <string name="sign_in">Sign in</string>
-    <string name="login_details">Enter your login details</string>
+    <string name="login_details">Ingrese sus credenciales</string>
     <string name="forgot_password">¿Te olvidastes de tu contraseña? Click para enviar un correo de recuperación</string>
     <string name="recovery_email_sent">Check your inbox for the recovery email.</string>
     <string name="empty_password_error">Password cannot be empty.</string>
     <string name="start_to_create_account">Click para crear una nueva cuenta.</string>
 
     <!-- SignUpScreen -->
-    <string name="create_account">Create account</string>
-    <string name="password_error">Your password should be at least six characters long and include one digit, one lowercase letter and one uppercase letter.</string>
-    <string name="password_match_error">Passwords do not match.</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="password_error">Tu contraseña debería al menos tener 6 caracteres y incluido 1 digito, 1 letra minúscula y 1 letra mayúscula.</string>
+    <string name="password_match_error">Ambas contraseñas no coinciden.</string>
+    <string name="start_to_login_account">Click para iniciar sesión.</string>
+
 
     <!-- SettingsScreen -->
     <string name="settings">Settings</string>

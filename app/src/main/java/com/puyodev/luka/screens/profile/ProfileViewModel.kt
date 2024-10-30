@@ -1,7 +1,5 @@
-package com.puyodev.luka.screens.Profile
+package com.puyodev.luka.screens.profile
 
-import com.puyodev.luka.LOGIN_SCREEN
-import com.puyodev.luka.SIGNUP_SCREEN
 import com.puyodev.luka.SPLASH_SCREEN
 import com.puyodev.luka.model.service.AccountService
 import com.puyodev.luka.model.service.LogService
@@ -9,7 +7,6 @@ import com.puyodev.luka.model.service.LogService
 import com.puyodev.luka.screens.LukaViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.flow.map
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
