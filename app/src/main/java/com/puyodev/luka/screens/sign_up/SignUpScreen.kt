@@ -1,19 +1,3 @@
-/*
-Copyright 2022 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    https://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
- */
-
 package com.puyodev.luka.screens.sign_up
 
 import androidx.compose.foundation.layout.*
@@ -62,7 +46,6 @@ fun SignUpScreenContent(
   onSignUpClick: () -> Unit,
   onLoginAccountClick: () -> Unit
 ) {
-  val fieldModifier = Modifier.fieldModifier()
 
   BasicToolbar(AppText.create_account)
 
@@ -74,15 +57,15 @@ fun SignUpScreenContent(
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
-    UsernameField(uiState.username, onUsernameChange, fieldModifier)
-    EmailField(uiState.email, onEmailChange, fieldModifier)
-    PasswordField(uiState.password, onPasswordChange, fieldModifier)
-    RepeatPasswordField(uiState.repeatPassword, onRepeatPasswordChange, fieldModifier)
+    UsernameField(uiState.username, onUsernameChange, Modifier.fieldModifier("new_username_field"))
+    EmailField(uiState.email, onEmailChange, Modifier.fieldModifier("new_email_field"))
+    PasswordField(uiState.password, onPasswordChange, Modifier.fieldModifier("new_password_field"))
+    RepeatPasswordField(uiState.repeatPassword, onRepeatPasswordChange, Modifier.fieldModifier("new_repassword_field"))
 
     BasicButton(AppText.create_account, Modifier.basicButton()) {
       onSignUpClick()
     }
-    BasicTextButton(AppText.start_to_create_account, Modifier.textButton()) {
+    BasicTextButton(AppText.start_to_login_account, Modifier.textButton()) {
       onLoginAccountClick()
     }
   }

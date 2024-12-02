@@ -12,6 +12,7 @@ const val OPERATIONS_SCREEN = "OperationsScreen"
 //const val OPERATIONS_SCREEN = "OperationsScreen"
 const val PAYPAL_SCREEN = "paypal_screen"
 
-
+const val INFO_SCREEN = "InfoScreen"
+const val OPERATION_DETAILS_SCREEN = "OperationDetailsScreen"
 const val OPERATION_ID = "operationId"
 const val OPERATION_ID_ARG = "?$OPERATION_ID={$OPERATION_ID}"

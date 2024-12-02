@@ -167,15 +167,27 @@ class StorageServiceImpl @Inject constructor(
       }
     }
 
-  override suspend fun getOperation(operationId: String): Operation? =
-    withContext(Dispatchers.IO) {
-      firestore.collection(OPERATION_COLLECTION)
+  override suspend fun getOperation(operationId: String): Operation? {
+    try {
+      val documentSnapshot = firestore.collection(OPERATION_COLLECTION)
         .document(operationId)
         .get()
         .await()
-        .toObject()
-    }
 
+      Log.d("StorageService", "Si se existe: ${documentSnapshot.exists()}")
+      if (documentSnapshot.exists()) {
+        val operation = documentSnapshot.toObject(Operation::class.java)
+        Log.d("StorageService", "Operacion obtenida: $operation")
+        return operation
+      } else {
+        Log.e("StorageService", "No se encontro un documento con tal id: $operationId")
+        return null
+      }
+    } catch (e: Exception) {
+      Log.e("StorageService", "Error retrieving operation", e)
+      return null
+    }
+  }
   override suspend fun getOperationFlow(operationId: String): Flow<Operation> = callbackFlow {
     val subscription = firestore.collection(OPERATION_COLLECTION)
       .document(operationId)
