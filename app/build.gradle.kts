@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    //Procesamiento de anotaciones en Kotlin
+    // Procesamiento de anotaciones en Kotlin
     id("com.google.devtools.ksp")
-    //inyeccion de dependencias
+    // Inyección de dependencias
     id("dagger.hilt.android.plugin")
     // Agregar el plugin de Google Services
     id("com.google.gms.google-services")
@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "com.puyodev.luka"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -40,12 +40,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17 //1_8 a 17
-        targetCompatibility = JavaVersion.VERSION_17 //1_8 a 17
+        sourceCompatibility = JavaVersion.VERSION_17 // 1_8 a 17
+        targetCompatibility = JavaVersion.VERSION_17 // 1_8 a 17
         isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-        jvmTarget = "17" //1.8 a 17
+        jvmTarget = "17" // 1.8 a 17
     }
     buildFeatures {
         compose = true
@@ -73,7 +73,6 @@ android {
             excludes += "META-INF/*.kotlin_module"
         }
     }
-
 }
 
 dependencies {
@@ -101,7 +100,7 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.navigation.compose.v274)//para la navegacion entre pantallas
+    implementation(libs.androidx.navigation.compose.v274) // para la navegación entre pantallas
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
@@ -109,7 +108,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-
 
     // Agregar Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
@@ -126,43 +124,44 @@ dependencies {
 
     // Dependencias adicionales de Firebase que puedas necesitar
 
-    //inyeccion de dependencias - hilt
+    // Inyección de dependencias - hilt
     implementation("com.google.dagger:hilt-android:2.47")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    //- compilador
+    // - compilador
     ksp("com.google.dagger:hilt-compiler:2.47")
 
-    //animacion confetti
+    // Animación confetti
     implementation("nl.dionsegijn:konfetti-compose:2.0.4")
 
-    //Dependencia para PayPal
+    // Dependencia para PayPal
     // PayPal SDK actualizado
-   //PayPal Core
+    // PayPal Core
     implementation("com.paypal.checkout:android-sdk:1.3.0") {
         exclude(group = "org.jfrog.cardinalcommerce.gradle", module = "cardinalmobilesdk")
     }
-    implementation ("com.paypal.android:card-payments:1.1.0")
+    implementation("com.paypal.android:card-payments:1.1.0")
     implementation("com.paypal.android:payment-buttons:1.1.0")
 
-
     // Agregar la dependencia de Cardinal Commerce
-//    implementation("org.jfrog.cardinalcommerce.gradle:cardinalmobilesdk:2.2.7-5")
+    // implementation("org.jfrog.cardinalcommerce.gradle:cardinalmobilesdk:2.2.7-5")
 
-    //Para el dialogo de Carga
+    // Para el diálogo de Carga
     implementation("com.valentinilk.shimmer:compose-shimmer:1.2.0")
 
     // Para manejar JSON
-    implementation ("com.squareup.moshi:moshi-kotlin:1.14.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
-    implementation ("org.json:json:20210307") // Para manejar JSON
+    implementation("org.json:json:20210307") // Para manejar JSON
 
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
 
     // Lifecycle
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    // Agregamos explícitamente la dependencia de Cardinal
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
 
+    // Agregar explícitamente la dependencia de Google Play Services para la ubicación
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:19.0.1")
 }
