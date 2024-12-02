@@ -1,6 +1,7 @@
 # Luka: Sistema de Pago Automático para Pasajes
 
 ![Logo de Luka](img/Captura%20de%20pantalla%202024-12-01%20225746.png)
+
 **Luka** es una aplicación móvil que facilita el pago automático de pasajes en transporte público mediante una interfaz de usuario moderna y fluida. Desarrollada en Kotlin con Jetpack Compose, la aplicación permite gestionar pagos seguros, autenticación de usuarios y realizar seguimientos de las transacciones.
 
 ## Características Principales
@@ -29,16 +30,27 @@
 La estructura del proyecto se organiza de la siguiente manera:
 
 - **Registro de Usuario**: Los usuarios se registran con su nombre, correo y contraseña usando Firebase Authentication, y luego pueden acceder para realizar pagos.
+  
 ![Logo de Luka](img/inicio.png)
+
 - **Lista de opciones**: Los usuarios pueden seleccionar diferentes opciones disponibles en la aplicación, como realizar pagos, ver el historial o gestionar su perfil.
+  
 ![Logo de Luka](img/barrra.png)
+
 - **Menu de pago**: Los usuarios pueden administrar el numero de pasajes a pagar tambien ver la tarifa y saldo.
+  
 ![Logo de Luka](img/selecciona.png)
+
 - **Saldo disponible y recargar**: Los usuarios pueden ver su saldo actual y recargarlo utilizando métodos de pago disponibles, como PayPal.
+  
 ![Logo de Luka](img/saldo.png)
+
 - **Historial de pagos**: Los usuarios pueden consultar un registro de todos los pagos realizados a través de la aplicación.
+  
 ![Logo de Luka](img/history.png)
+
 - **Configuracion de perfil**  : Los usuarios pueden actualizar su información personal tambien cambiar su contraseña desde la aplicación y si desea darse de baja.
+- 
 ![Logo de Luka](img/perfill.png)
 
 ## Instalación
